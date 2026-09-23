@@ -172,7 +172,18 @@ def mapa_riesgo(df, modelo):
         s=140,
         edgecolors="black",
         linewidths=0.4,
+        zorder=3
     )
+    # Nombre de cada comarca junto a su punto, para poder identificarlas en el mapa (UPDATED 23/09/2026)
+    for _, fila in riesgo_por_comarca.iterrows():
+            ax.annotate(
+                fila["comarca"],
+                (fila["lon"], fila["lat"]),
+                xytext=(4, 4),
+                textcoords="offset points",
+                fontsize=6,
+                zorder=4,
+            )
     ax.set_xlabel("Longitud")
     ax.set_ylabel("Latitud")
     ax.set_title("Riesgo medio de incendio por comarca (Catalunya)")
